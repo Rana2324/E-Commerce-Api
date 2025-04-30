@@ -53,7 +53,7 @@ async function startServer() {
 
     // Handle termination signals
     process.on('SIGTERM', () => gracefulShutdown('SIGTERM')); // Ctrl+C
-    process.on('SIGINT', () => gracefulShutdown('SIGINT')); // kill বা Docker stop
+    process.on('SIGINT', () => gracefulShutdown('SIGINT')); // kill or Docker stop
 
     // Handle unexpected errors
     process.on('unhandledRejection', err => {

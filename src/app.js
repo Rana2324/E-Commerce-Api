@@ -6,6 +6,8 @@ import helmet from 'helmet';
 import morganMiddleware from './middlewares/morganMiddleware.js';
 import logger from './config/loggerConfig.js';
 import http from 'http';
+import corseConfig from './config/corseConfig.js';
+import helmetConfig from './config/helmetConfig.js';
 import limiter from './middlewares/rateLimiter.js';
 
 // Load environment variables
@@ -26,6 +28,8 @@ function createApp() {
 
   // Logging middleware
   app.use(morganMiddleware);
+  app.use(corseConfig);
+  app.use(helmetConfig);
 
   // Health check route
   app.get('/health', (req, res) => {

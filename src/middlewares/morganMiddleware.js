@@ -1,14 +1,9 @@
 import morgan from 'morgan';
 import logger from '../config/loggerConfig.js';
 
-// Create custom token for timestamp
-morgan.token('timestamp', () => {
-  return new Date().toISOString();
-});
-
-// Custom format string including timestamp
+// Custom format string without timestamp (winston will add it)
 const morganMiddleware = morgan(
-  ':timestamp ] :method :url :status :response-time ms - :res[content-length]',
+  ':method :url :status :response-time ms - :res[content-length]',
   {
     stream: {
       write: (message) => logger.info(message.trim()),
