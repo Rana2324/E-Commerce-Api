@@ -1,14 +1,19 @@
 import morgan from 'morgan';
 import logger from '../config/loggerConfig.js';
 
-// Custom format string without timestamp (winston will add it)
-const morganMiddleware = morgan(
-  ':method :url :status :response-time ms - :res[content-length]',
-  {
-    stream: {
-      write: (message) => logger.info(message.trim()),
-    },
-  }
-);
+const morganMiddleware = morgan((tokens, req, res) => {
+  const url = decodeURIComponent(tokens.url(req, res));
+  return [
+    tokens.method(req, res),
+    url,
+    tokens.status(req, res),
+    tokens['response-time'](req, res),
+    'ms'
+  ].join(' ');
+}, {
+  stream: {
+    write: (message) => logger.info(message.trim()),
+  },
+});
 
 export default morganMiddleware;

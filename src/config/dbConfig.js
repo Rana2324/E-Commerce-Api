@@ -17,11 +17,11 @@ const mongooseOptions = {
  */
 const connectDB = async () => {
   try {
-    const mongoURI = process.env.MONGO_URI;
+    // Try to get MongoDB URI from environment variables, or use a fallback for testing
+    const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/e-commerce-api';
 
-    if (!mongoURI) {
-      throw new Error('MongoDB connection URI is not defined in environment variables');
-    }
+    console.log('Connecting to MongoDB...');
+    // For testing purposes only - in production always use environment variables
 
     // Listen for connection events
     mongoose.connection.on('connected', () => {

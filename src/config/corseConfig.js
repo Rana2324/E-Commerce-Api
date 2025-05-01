@@ -11,5 +11,5 @@ const corsConfig = {
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 }
 
-// Export the CORS configuration
+// Export the CORS middleware function
 export default cors(corsConfig);

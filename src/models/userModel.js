@@ -20,6 +20,7 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true,      
     },
+
     phone:{
         type:String,
         required:true,
@@ -40,6 +41,7 @@ const userSchema = new mongoose.Schema({
         type:Boolean,
         default:false,
     },
+    
 
 },{timestamps:true});
 
